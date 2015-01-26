@@ -7,22 +7,19 @@ import spotify
 import time
 import getpass
 
-start=0
-running=True
-playing=True
-num=0
-
 session = spotify.Session()
 loop = spotify.EventLoop(session)
 loop.start()
 audio = spotify.PortAudioSink(session) #change to AlsaSink for GNU/Linux environment
-User=raw_input('Username: ')
+print 'Please log in to Spotify'
+User=raw_input('Username/Email: ')
 Pass=getpass.getpass('Password: ')
 session.login(User,Pass)
 time.sleep(3) #TODO: add detection
 
 print '\nChoose a Playlist:'
 for i in range(len(session.playlist_container)):
+    if not session.playlist_container[i].name: time.sleep(.1) #TODO: add detection
     print str(i+1)+'. '+session.playlist_container[i].name
 print ''
 playlist = session.playlist_container[int(raw_input('Playlist number: '))-1]
@@ -40,12 +37,17 @@ font_small = pygame.font.SysFont("menlo", 20)
 screen.fill((255,255,255))
 pygame.display.update()
 
+running=True
+playing=True
+start=0
+num=0
+
 while playing:
     for event in pygame.event.get():
         if event.type == QUIT: playing = False
     if running and time.time()-start >= 60:
         start=time.time()
-        num=num+1
+        num+=1
         track = tracks[num-1]
         print str(num)+'. '+str(track.name)
         session.player.load(track)
