@@ -1,8 +1,5 @@
 import pygame
 from pygame.locals import *
-import random
-import math
-import time
 import spotify
 import time
 import getpass
@@ -58,4 +55,5 @@ while playing:
         screen.blit(font_small.render(str(track.artists[0].name), 1, (0,0,0)), (screen_width/2-5*len(str(track.artists[0].name)),screen_height/2+80))
         pygame.display.update()
         if num==60: running=False
+	#TODO: end behavior
     time.sleep(.1) #event handling slows everything down
