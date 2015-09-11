@@ -13,4 +13,4 @@ pip install --pre pyspotify
 yum install pyaudio
 ```
 
-Make sure you add a Spotify API key named "spotify_appkey.key" to the top directory, then simply run snikcerdodole.py with Python.
+Make sure you add a [Spotify API key](https://devaccount.spotify.com/my-account/keys/) named "spotify_appkey.key" to the top directory, then simply run snikcerdodole.py with Python.
